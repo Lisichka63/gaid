@@ -125,10 +125,7 @@ iptables -t nat -A PREROUTING -i ens33 -p tcp --dport 1:65535 -j DNAT --to-desti
 iptables -A FORWARD -i ens33 -o ens36 -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A FORWARD -i ens36 -o ens33 -j ACCEPT
 
-На WEB-L и WEB-R:
-
-# Установить маршрут по умолчанию
-route add default gw <IP_RTR_or_LTL>
+На WEB-L и WEB-R и ISP:
 
 # Для сохранения настроек iptables при перезапуске системы, вы можете использовать утилиту iptables-persistent. Вот как вы можете это сделать:
 
