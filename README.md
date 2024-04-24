@@ -68,6 +68,9 @@ iface ens33 inet static
 
 На ISP:
 
+#Установите пакет iptables
+apt install iptables
+
 # Включить IP-преадресацию
 echo 1 > /proc/sys/net/ipv4/ip_forward
 
@@ -79,6 +82,9 @@ iptables -A FORWARD -i ens33 -o ens37 -m state --state RELATED,ESTABLISHED -j AC
 iptables -A FORWARD -i ens37 -o ens33 -j ACCEPT
 
 На RTR:
+
+#Установите пакет iptables
+apt install iptables
 
 # Включить IP-преадресацию
 echo 1 > /proc/sys/net/ipv4/ip_forward
@@ -95,6 +101,9 @@ iptables -A FORWARD -i ens33 -o ens36 -m state --state RELATED,ESTABLISHED -j AC
 iptables -A FORWARD -i ens36 -o ens33 -j ACCEPT
 
 На LTL:
+
+#Установите пакет iptables
+apt install iptables
 
 # Включить IP-преадресацию
 echo 1 > /proc/sys/net/ipv4/ip_forward
@@ -114,6 +123,19 @@ iptables -A FORWARD -i ens36 -o ens33 -j ACCEPT
 
 # Установить маршрут по умолчанию
 route add default gw <IP_RTR_or_LTL>
+
+#Для сохранения настроек iptables при перезапуске системы, вы можете использовать утилиту iptables-persistent. Вот как вы можете это сделать:
+
+Установите пакет iptables-persistent:
+sudo apt-get install iptables-persistent
+
+Во время установки, система спросит вас, хотите ли вы сохранить текущие правила iptables. Выберите “Yes” для сохранения текущих правил.
+
+Если вы внесли изменения в правила iptables после установки iptables-persistent, вы можете сохранить текущие правила вручную:
+sudo netfilter-persistent save
+
+При перезагрузке системы, iptables-persistent автоматически загрузит сохраненные правила.
+
 
 
 
