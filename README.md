@@ -146,6 +146,12 @@ sudo ip tunnel add Tunnel1 mode gre local 192.168.2.2 remote 192.168.1.2 ttl 255
 sudo ip link set Tunnel1 up
 sudo ip addr add 10.0.0.2/30 dev Tunnel1
 
+# IPsec защита туннеля
+
+*****************************************
+
+# Динамическая маршрутизация 
+
 
 
 
