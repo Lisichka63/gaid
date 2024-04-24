@@ -83,6 +83,8 @@ iptables -A FORWARD -i ens37 -o ens33 -j ACCEPT
 
 На RTR:
 
+ip route add default via 192.168.1.1 dev ens33
+
 #Установите пакет iptables
 apt install iptables
 
@@ -101,6 +103,8 @@ iptables -A FORWARD -i ens33 -o ens36 -m state --state RELATED,ESTABLISHED -j AC
 iptables -A FORWARD -i ens36 -o ens33 -j ACCEPT
 
 На LTL:
+
+ip route add default via 192.168.1.2 dev ens33
 
 #Установите пакет iptables
 apt install iptables
