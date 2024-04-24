@@ -146,45 +146,6 @@ sudo ip tunnel add Tunnel1 mode gre local 192.168.2.2 remote 192.168.1.2 ttl 255
 sudo ip link set Tunnel1 up
 sudo ip addr add 10.0.0.2/30 dev Tunnel1
 
-# Установка StrongSwan (для IPsec): На каждом из ваших роутеров выполните следующую команду для установки StrongSwan:
-
-sudo apt-get install strongswan
-
-# Настройка IPsec: Создайте или отредактируйте файл /etc/ipsec.conf на каждом роутере. Вот пример того, что вы можете включить в этот файл:
-
-На RTR-L:
-
-conn mytunnel
-    auto=start
-    left=192.168.1.2
-    right=192.168.2.2
-    authby=secret
-    type=transport
-    keyexchange=ikev2
-
-На RTR-R:
-
-conn mytunnel
-    auto=start
-    left=192.168.1.2
-    right=192.168.2.2
-    authby=secret
-    type=transport
-    keyexchange=ikev2
-
-# Настройка предварительно согласованного ключа (PSK): Ключи для IPsec определяются в файле /etc/ipsec.secrets. В этом файле вы указываете предварительно согласованный ключ (PSK) для вашего туннеля. Вот пример конфигурации:
-
-На RTR-L:
-
-192.168.1.2 192.168.2.2 : PSK "your_pre_shared_key"
-
-На RTR-R:
-
-192.168.1.2 192.168.2.2 : PSK "your_pre_shared_key"
-
-В этом примере мы определяем PSK для идентификаторов 4.4.4.100 и 5.5.5.100. Замените "your_pre_shared_key" на ваш предварительно согласованный ключ. Этот ключ должен быть одинаковым на обоих роутерах.
-
-Перезапуск IPsec: После того, как вы настроили IPsec и ключи, вы должны перезапустить IPsec с помощью команды sudo systemctl restart ipsec.
 
 
 
