@@ -124,7 +124,7 @@ iptables -A FORWARD -i ens36 -o ens33 -j ACCEPT
 # Установить маршрут по умолчанию
 route add default gw <IP_RTR_or_LTL>
 
-#Для сохранения настроек iptables при перезапуске системы, вы можете использовать утилиту iptables-persistent. Вот как вы можете это сделать:
+# Для сохранения настроек iptables при перезапуске системы, вы можете использовать утилиту iptables-persistent. Вот как вы можете это сделать:
 
 Установите пакет iptables-persistent:
 sudo apt-get install iptables-persistent
