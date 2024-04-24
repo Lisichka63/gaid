@@ -68,7 +68,7 @@ iface ens33 inet static
 
 На ISP:
 
-#Установите пакет iptables
+# Установите пакет iptables
 apt install iptables
 
 # Включить IP-преадресацию
@@ -91,12 +91,12 @@ apt install iptables
 # Включить IP-преадресацию
 echo 1 > /proc/sys/net/ipv4/ip_forward
 
-# Настроить NAT
+# Настроить NAT (выбрать либо NAT либо PAT)
 iptables -t nat -A POSTROUTING -o ens33 -j MASQUERADE
 iptables -A FORWARD -i ens33 -o ens36 -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A FORWARD -i ens36 -o ens33 -j ACCEPT
 
-# Настроить PAT
+# Настроить PAT (выбрать либо NAT либо PAT)
 iptables -t nat -A POSTROUTING -o ens33 -j SNAT --to-source 192.168.1.2
 iptables -t nat -A PREROUTING -i ens33 -p tcp --dport 1:65535 -j DNAT --to-destination 192.168.3.2
 iptables -A FORWARD -i ens33 -o ens36 -m state --state RELATED,ESTABLISHED -j ACCEPT
@@ -106,7 +106,7 @@ iptables -A FORWARD -i ens36 -o ens33 -j ACCEPT
 
 ip route add default via 192.168.1.2 dev ens33
 
-#Установите пакет iptables
+# Установите пакет iptables
 apt install iptables
 
 # Включить IP-преадресацию
