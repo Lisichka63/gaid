@@ -24,7 +24,7 @@ iface ens33 inet static
     address 192.168.1.2
     netmask 255.255.255.0
     gateway 192.168.1.1
-    up ip route add default via 192.168.1.1 dev ens33
+    up ip route add default via 192.168.1.1 dev ens33 (дублируем эту строку в терминал)
 
 auto ens36
 iface ens36 inet static
@@ -39,7 +39,7 @@ iface ens33 inet static
     address 192.168.2.2
     netmask 255.255.255.0
     gateway 192.168.2.1
-    up ip route add default via 192.168.2.1 dev ens33
+    up ip route add default via 192.168.2.1 dev ens33 (дублируем эту строку в терминал)
 
 auto ens36
 iface ens36 inet static
